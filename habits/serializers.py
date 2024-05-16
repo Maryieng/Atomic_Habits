@@ -12,7 +12,7 @@ class HabitSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
     validators = [
-        RelatedAndRewardValidator(related_habits='related_habits', reward='reward'),
-        RelatedValidator(related_habits='related_habits', sign_good_habit='sign_good_habit'),
-        GoodHabitValidator(sign_good_habit='sign_good_habit', related_habits='related_habits', reward='reward')
+        RelatedAndRewardValidator(related='related', reward='reward'),
+        RelatedValidator(related='related', sign_good_habit='sign_good_habit'),
+        GoodHabitValidator(sign_good_habit='sign_good_habit', related='related', reward='reward')
     ]

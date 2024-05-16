@@ -2,33 +2,34 @@ from django.shortcuts import render
 from rest_framework import generics
 
 from habits.models import Habit
+from habits.serializers import HabitSerializers
 
 
-class LessonCreateView(generics.CreateAPIView):
+class HabitCreateView(generics.CreateAPIView):
     """ создание привычки """
-    # serializer_class =
+    serializer_class = HabitSerializers
     # permission_classes = [IsAuthenticated]
 
 
-class LessonListView(generics.ListAPIView):
+class HabitListView(generics.ListAPIView):
     """ список всех привычек """
-    # serializer_class =
+    serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     # permission_classes = [IsAuthenticated]
     # filter_backends = [DjangoFilterBackend, OrderingFilter]
     # pagination_class = WellAndLessonPagination
 
 
-class LessonRetrieveView(generics.RetrieveAPIView):
+class HabitRetrieveView(generics.RetrieveAPIView):
     """ детальная информация привычки """
-    # serializer_class =
+    serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     # permission_classes = [IsModerator, IsOwner]
 
 
-class LessonUpdateView(generics.UpdateAPIView):
+class HabitUpdateView(generics.UpdateAPIView):
     """ изменение привычки """
-    # serializer_class =
+    serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     # permission_classes = [IsModerator, IsOwner]
 

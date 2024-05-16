@@ -3,12 +3,12 @@ from rest_framework.serializers import ValidationError
 
 class RelatedAndRewardValidator:
     """ Валидатор для исключения одновременного выбора связанной привычки и вознаграждения """
-    def __init__(self, related_habits, reward):
-        self.related_habits = related_habits
+    def __init__(self, related, reward):
+        self.related = related
         self.reward = reward
 
     def __call__(self, value):
-        related = value.get(self.related_habits)
+        related = value.get(self.related)
         reward = value.get(self.reward)
         if not related and reward:
             raise ValidationError('Необходимо выбрать либо вознаграждение, либо приятную привычку')
@@ -16,27 +16,27 @@ class RelatedAndRewardValidator:
 
 class RelatedValidator:
     """ Является ли связанная привычка приятной """
-    def __init__(self, related_habits, sign_good_habit):
-        self.related_habits = related_habits
-        self.sign_good_habit = sign_good_habit
+    def __init__(self, related, sign_good_habit):
+        self.related = related
+        self.sign_good = sign_good_habit
 
     def __call__(self, value):
-        related_habits = value.get(self.related_habits)
-        sign_good_habit = value.get(self.sign_good_habit)
-        if related_habits:
-            if not related_habits.good_habit:
+        related = value.get(self.related)
+        sign_good = value.get(self.sign_good)
+        if related:
+            if not related.good_habit:
                 raise ValidationError('Связанные привычки могут быть только привычки с приятным признаком.')
 
 class GoodHabitValidator:
     """ У приятной привычки не может быть вознаграждения """
-    def __init__(self, sign_good_habit, related_habits, reward):
+    def __init__(self, sign_good_habit, related, reward):
         self.sign_good_habit = sign_good_habit
-        self.related_habits = related_habits
+        self.related = related
         self.reward = reward
 
     def __call__(self, value):
         sign_good_habit = value.get(self.sign_good_habit)
-        related_habits = value.get(self.related_habits)
+        related = value.get(self.related)
         reward = value.get(self.reward)
-        if sign_good_habit and (related_habits or reward):
+        if sign_good_habit and (related or reward):
             raise ValidationError('У приятной привычки не может быть вознаграждения.')
