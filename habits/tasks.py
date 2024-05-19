@@ -18,6 +18,6 @@ def task_send_message():
             text_message = (f"Пора {habit.action} на {habit.place}. "
                             f"На это тебе понадобится примерно {habit.time_to_complete} секунд.")
             if habit.reward:
-                text_message += f"\nА в виде вознаграждения можешь {habit.prize.title}."
+                text_message += f"\nА в виде вознаграждения можешь {habit.reward}."
             message = TGBot()
             message.send_habit(text=text_message, chat_id=chat_id)
