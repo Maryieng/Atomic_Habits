@@ -3,7 +3,7 @@ import requests
 
 
 class TGBot:
-    token = os.getenv('TELEGRAM_TOKEN')
+    token = os.getenv('TELEGRAM')
     url = f'https://api.telegram.org/bot{token}/sendMessage'
 
     def send_habit(self, text, chat_id):
