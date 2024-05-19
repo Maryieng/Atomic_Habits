@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 
 from habits.models import Habit
+from habits.paginations import HabitPaginator
 from habits.serializers import HabitSerializers
 
 
@@ -17,7 +18,7 @@ class HabitListView(generics.ListAPIView):
     queryset = Habit.objects.all()
     # permission_classes = [IsAuthenticated]
     # filter_backends = [DjangoFilterBackend, OrderingFilter]
-    # pagination_class = WellAndLessonPagination
+    pagination_class = HabitPaginator
 
 
 class HabitRetrieveView(generics.RetrieveAPIView):
