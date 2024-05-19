@@ -1,5 +1,5 @@
 from rest_framework import generics, viewsets
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from users.models import User
 from users.serializers import UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
@@ -12,7 +12,7 @@ class UserAPIListView(generics.ListAPIView):
     """Просмотр всех пользователей"""
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
 
 class UserCreateAPIView(generics.CreateAPIView):
