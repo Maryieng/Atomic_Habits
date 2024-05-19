@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from habits.models import Habit
-from habits.validators import RelatedAndRewardValidator, RelatedValidator, GoodHabitValidator
+from habits.validators import validate_linked_habit, validate_reward_for_useful_habit, validate_related_or_reward
 
 
 class HabitSerializers(serializers.ModelSerializer):
@@ -11,8 +11,11 @@ class HabitSerializers(serializers.ModelSerializer):
         model = Habit
         fields = '__all__'
 
-    validators = [
-        RelatedAndRewardValidator(related='related', reward='reward'),
-        RelatedValidator(related='related', sign_good_habit='sign_good_habit'),
-        GoodHabitValidator(sign_good_habit='sign_good_habit', related='related', reward='reward')
-    ]
+    def validate(self, data):
+        """ Валидаторы для проверок по условиям """
+        habit = Habit(**data)
+
+        validate_linked_habit(habit)
+        validate_reward_for_useful_habit(habit)
+        validate_related_or_reward(habit)
+        return data

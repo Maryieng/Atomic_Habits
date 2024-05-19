@@ -1,3 +1,6 @@
+from datetime import timedelta
+
+from django.core.validators import MaxValueValidator
 from django.db import models
 
 from config.settings import AUTH_USER_MODEL
@@ -20,7 +23,8 @@ class Habit(models.Model):
                                        verbose_name='Связанная привычка')
     periodicity = models.CharField(choices=period, default='every_day', verbose_name="Периодичность")
     reward = models.CharField(max_length=200, verbose_name='Вознаграждение', **NULLABLE)
-    time_to_complete = models.IntegerField(verbose_name='Время на выполнение')
+    time_to_complete = models.IntegerField(verbose_name='Время на выполнение',
+                                           validators=[MaxValueValidator(int(timedelta(seconds=120).total_seconds()))])
     is_public = models.BooleanField(default=True, verbose_name="Признак публичности")
 
     def __str__(self):
