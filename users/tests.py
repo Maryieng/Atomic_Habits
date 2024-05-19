@@ -27,7 +27,6 @@ class UserTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
     def test_user_delete(self):
         """ Удаление Пользователя """
         response = self.client.delete(reverse('users:users_delete', kwargs={'pk': self.user.pk}))

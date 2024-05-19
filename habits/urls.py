@@ -14,5 +14,4 @@ urlpatterns = [
     path('public_list', GetPublicHabitListView.as_view(), name='public_habit_list'),
     path('view/<int:pk>/', HabitRetrieveView.as_view(), name='habit_view'),
     path('update/<int:pk>/', HabitUpdateView.as_view(), name='habit_update'),
-    path('delete/<int:pk>/', HabitDestroyView.as_view(), name='habit_delete'),
-    ] + router.urls
+    path('delete/<int:pk>/', HabitDestroyView.as_view(), name='habit_delete')] + router.urls

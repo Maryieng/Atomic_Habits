@@ -1,5 +1,4 @@
-from rest_framework import generics, viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import generics
 from users.models import User
 from users.serializers import UserSerializer
 

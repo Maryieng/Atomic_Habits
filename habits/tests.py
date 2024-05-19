@@ -53,7 +53,7 @@ class HabitTestCase(APITestCase):
         """ Удаления Привычки """
         delete_url = reverse('habits:habit_delete', kwargs={'pk': self.habit.pk})
         response = self.client.delete(delete_url)
-        self.assertEqual(response.status_code,status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Habit.objects.filter(id=self.habit.pk).count(), 0)
 
     def test_habit_update(self):
@@ -72,7 +72,6 @@ class HabitTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-
     def test_validate_reward_for_useful_habit(self):
         """Тестирование Только полезные привычки могут иметь награду"""
 
@@ -81,7 +80,6 @@ class HabitTestCase(APITestCase):
         response = self.client.post(reverse('habits:habit_create'), data=data)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
 
     def test_validate_related_or_reward(self):
         """Тестирование либо вознаграждение, либо приятная привычка """
