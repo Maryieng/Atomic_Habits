@@ -12,6 +12,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=35, verbose_name='Телефон', **NULLABLE)
     avatar = models.ImageField(upload_to='users/', verbose_name='Аватар', **NULLABLE)
     city = models.CharField(max_length=50, verbose_name='Город', **NULLABLE)
+    tg_name = models.CharField(max_length=100, verbose_name='Никнейм в телеграме')
     telegram_chat_id = models.CharField(max_length=100, verbose_name='ID в телеграме', **NULLABLE)
 
     USERNAME_FIELD = "email"
