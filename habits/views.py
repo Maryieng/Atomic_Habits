@@ -10,14 +10,14 @@ from habits.serializers import HabitSerializers
 class HabitCreateView(generics.CreateAPIView):
     """ создание привычки """
     serializer_class = HabitSerializers
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
 class HabitListView(generics.ListAPIView):
     """ список всех привычек """
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
+    # permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = HabitPaginator
 
 

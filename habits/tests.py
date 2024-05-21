@@ -29,12 +29,11 @@ class HabitTestCase(APITestCase):
     def test_habit_create(self):
         """ Создание Привычки """
         data = {"place": "Дом", "time": "21:00", "action": "Спать", "time_to_complete": "100",
-                "periodicity": "every_day", "sign_good_habit": "False"}
+                "periodicity": "every_day", "sign_good_habit": "True"}
         response = self.client.post(reverse('habits:habit_create'), data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.json(), {'id': 2, 'place': 'Дом', 'time': '21:00:00', 'action': 'Спать',
-                                           'sign_good_habit': False, 'periodicity': 'every_day', 'reward': None,
+                                           'sign_good_habit': True, 'periodicity': 'every_day', 'reward': None,
                                            'time_to_complete': 100, 'is_public': False, 'user': None,
                                            'related_habits': None})
 
@@ -58,7 +57,7 @@ class HabitTestCase(APITestCase):
 
     def test_habit_update(self):
         """ Обновление информации по Привычке """
-        data = {'place': 'Улица', 'time': '18:00', 'action': 'Гулять'}
+        data = {'place': 'Улица', 'time': '18:00', 'action': 'Гулять', 'sign_good_habit': 'True'}
         response = self.client.patch(reverse('habits:habit_update', kwargs={'pk': self.habit.pk}), data=data)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -76,7 +75,7 @@ class HabitTestCase(APITestCase):
         """Тестирование Только полезные привычки могут иметь награду"""
 
         data = {"place": "Дом", "time": "21:00", "action": "Спать", "time_to_complete": "100",
-                "periodicity": "every_day", "sign_good_habit": "False", "reward": "Мороженное"}
+                "periodicity": "every_day", "sign_good_habit": "True", "reward": "Мороженное"}
         response = self.client.post(reverse('habits:habit_create'), data=data)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
