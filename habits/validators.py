@@ -8,7 +8,7 @@ def validate_related_or_reward(habit):
 
 def validate_linked_habit(habit):
     if habit.related_habits:
-        if not habit.sign_good_habit:
+        if habit.sign_good_habit:
             raise ValidationError('В связанные привычки могут попадать только привычки с приятным признаком.')
 
 
