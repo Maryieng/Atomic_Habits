@@ -14,20 +14,22 @@ class HabitCreateView(generics.CreateAPIView):
 
 
 class HabitListView(generics.ListAPIView):
-    """ список всех привычек """
+    """ список всех привычек пользователя """
     serializer_class = HabitSerializers
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = HabitPaginator
 
     def get_queryset(self):
-        """ Пользователь видит только свои привычки """
-        user = self.request.user
-        if not user.is_superuser:
-            queryset = Habit.objects.filter(user=user)
-        else:
-            queryset = Habit.objects.all()
-        return queryset
+        return Habit.objects.filter(user=self.request.user)
+
+
+class GetPublicHabitListView(generics.ListAPIView):
+    """ Посмотр списка всех публичных привычек """
+    queryset = Habit.objects.filter(is_public=True)
+    serializer_class = HabitSerializers
+    pagination_class = HabitPaginator
+    permission_classes = [IsAuthenticated]
 
 
 class HabitRetrieveView(generics.RetrieveAPIView):
