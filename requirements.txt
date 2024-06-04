@@ -1,0 +1,14 @@
+django
+python-dotenv
+psycopg2
+django-filter
+djangorestframework
+djangorestframework-simplejwt
+drf-yasg
+django-cors-headers
+celery
+eventlet
+redis
+django-celery-beat
+coverage
+stripe

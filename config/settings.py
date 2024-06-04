@@ -67,9 +67,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Atomic_Habits',
-        'USER': os.getenv('USER_DATABASES'),
-        'PASSWORD': os.getenv('PASSWORD_DATABASES')
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('USER_DATABASES'),
+        'PASSWORD': os.environ.get('PASSWORD_DATABASES'),
+        'HOST': 'db',
+        'PORT': '5432'
     }
 }
 
