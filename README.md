@@ -59,3 +59,23 @@
 
 Документация
 Настроен вывод документации
+
+
+Настройки Докера
+
+Установка
+[Подробное руководство по установке](https://docs.docker.com/engine/install/)
+
+Проверка работоспособности докера
+docker run hello-world
+
+Настройки Docker-compose
+Установка
+[Подробное руководство по установке](https://docs.docker.com/compose/install/)
+
+Команды для запуска
+docker-compose build- создать контейнеры докера
+docker-compose up- запустить контейнеры докера
+
+Доступ
+http://localhost:8000
