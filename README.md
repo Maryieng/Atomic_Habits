@@ -75,6 +75,7 @@ docker run hello-world
 
 Команды для запуска
 docker-compose build- создать контейнеры докера
+
 docker-compose up- запустить контейнеры докера
 
 Доступ
