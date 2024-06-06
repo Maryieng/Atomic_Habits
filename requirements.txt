@@ -12,3 +12,4 @@ redis
 django-celery-beat
 coverage
 stripe
+pillow

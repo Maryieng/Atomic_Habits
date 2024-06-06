@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY_DJANGO')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -140,3 +140,7 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(minutes=1),
     },
 }
+
+
+
+
